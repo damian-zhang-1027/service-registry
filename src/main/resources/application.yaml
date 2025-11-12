@@ -1,3 +1,25 @@
+server:
+  port: 8761
+
 spring:
   application:
     name: service-registry
+
+eureka:
+  client:
+    # don't register with eureka server itself
+    register-with-eureka: false
+
+    # don't fetch registry from eureka server itself
+    fetch-registry: false
+
+    # service url to point to itself (for dashboard and client)
+    service-url:
+      defaultZone: ${EUREKA_DEFAULT_ZONE}
+  server:
+    # disable self-preservation mode in development/single-node mode
+    # so that service deregistration will be faster
+    enable-self-preservation: false
+
+    # interval to clean up registry (in milliseconds)
+    eviction-interval-timer-in-ms: 5000
